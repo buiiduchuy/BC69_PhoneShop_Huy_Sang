@@ -1,0 +1,26 @@
+$screen: (
+  "sm": 567,
+  "md": 767,
+  "lg": 991,
+  "xl": 1200,
+);
+
+@mixin responsive($screenName) {
+  @if (map-has-key($map: $screen, $key: $screenName)) {
+    $value: map-get(
+      $map: $screen,
+      $key: $screenName,
+    );
+
+    @media screen and (max-width: #{$value}px) {
+      @content;
+    }
+  } @else {
+    @warn ("Screen name not exist");
+  }
+}
+
+// use
+// @include responsive("sm") {
+//   ...
+// }

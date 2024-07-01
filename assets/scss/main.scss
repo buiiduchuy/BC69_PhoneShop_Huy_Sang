@@ -1,0 +1,25 @@
+// base
+@import "./base/reset";
+
+// component
+@import "./components/button";
+@import "./components/card";
+@import "./components/heading";
+
+// layouts
+@import "./layouts/carousel";
+@import "./layouts/footer";
+@import "./layouts/header";
+@import "./layouts/gridContent";
+@import "./layouts/cart";
+
+// pages
+@import "./pages/home";
+@import "./pages/shop";
+
+// themes
+@import "./themes/admin";
+
+// utilities
+@import "./utilities/mixins";
+@import "./utilities/variables";
