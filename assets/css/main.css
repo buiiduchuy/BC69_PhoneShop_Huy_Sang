@@ -1,109 +1,101 @@
-*,
-*:before,
-*:after {
+* {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
 
-html,
-body,
-div,
-span,
-object,
-iframe,
-figure,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-blockquote,
-pre,
-a,
-code,
-em,
-img,
-small,
-strike,
-strong,
-sub,
-sup,
-tt,
-b,
-u,
-i,
-ol,
-ul,
-li,
-fieldset,
-form,
-label,
-table,
-caption,
-tbody,
-tfoot,
-thead,
-tr,
-th,
-td,
-main,
-canvas,
-embed,
-footer,
-header,
-nav,
-section,
-video {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  font-size: 100%;
-  font: inherit;
-  vertical-align: baseline;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -webkit-text-size-adjust: none;
-     -moz-text-size-adjust: none;
-          text-size-adjust: none;
+.comp-btn, .btn-switch {
+  display: inline-block;
+  padding: 10px 25px;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  text-decoration: none;
 }
 
-footer,
-header,
-nav,
-section,
-main {
-  display: block;
+.btn-switch {
+  background-color: #000000;
+  color: #fff;
+  padding: 10px 25px;
+  transition: all 0.3s ease-in;
+}
+.btn-switch:hover {
+  background-color: #fff;
+  color: #000000;
+  border-color: #000000;
 }
 
-body {
-  line-height: 1;
+.heading {
+  font-size: 30px;
 }
 
-ol,
-ul {
-  list-style: none;
+footer {
+  box-shadow: 0 0 10px #c9d8f4;
+}
+footer .footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 20px 0;
+}
+footer .footer .copyright {
+  font-weight: 400;
+  margin: 0 20px;
+}
+footer .footer .nav-foot {
+  flex: auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
 }
 
-blockquote,
-q {
-  quotes: none;
+header {
+  box-shadow: 0 0 10px #c9d8f4;
+  position: fixed;
+  width: 100%;
 }
 
-blockquote:before,
-blockquote:after,
-q:before,
-q:after {
-  content: "";
+.nav-link {
+  font-size: 18px;
+  padding: 0 20px !important;
+  position: relative;
+}
+.nav-link.cart::after {
   content: none;
 }
-
-table {
-  border-collapse: collapse;
-  border-spacing: 0;
+.nav-link::after {
+  content: "";
+  display: block;
+  width: 100%;
+  transform: scaleX(0);
+  height: 2px;
+  background-color: #000000;
+  position: relative;
+  transition: all 0.3s ease;
+}
+.nav-link:hover::after {
+  transform: scaleX(1);
 }
 
-input {
-  -webkit-appearance: none;
-  border-radius: 0;
+.logo {
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.admin {
+  padding-top: 100px;
+}
+.admin table .name {
+  font-size: 18px;
+}
+.admin table th {
+  font-weight: 600;
+  padding: 25px 20px;
+}
+.admin table td {
+  vertical-align: top;
+  padding: 25px 20px;
+}
+.admin table img {
+  max-width: 80px;
 }/*# sourceMappingURL=main.css.map */

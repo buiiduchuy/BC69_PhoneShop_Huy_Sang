@@ -5,20 +5,106 @@
   <!-- Required meta tags -->
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<<<<<<< HEAD
   <link rel="shortcut icon" href="../assets/image/favicon.png" type="image/x-icon">
   <!-- Bootstrap CSS v5.2.1 -->
   <link href="../assets/css/bootstrap.min.css" />
+=======
+
+  <!-- font -->
+  <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+
+  <!-- font icon -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- Bootstrap CSS v5.3.3 -->
+  <link rel="stylesheet" href="../assets/css/bootstrap.min.css" />
+>>>>>>> devhuy
   <link rel="stylesheet" href="../assets/css/main.css">
 </head>
 
 <body>
   <header>
-    <!-- devHuy -->
+    <nav class="navbar navbar-expand-lg bg-body-tertiary p-3">
+      <div class="container">
+        <a class="navbar-brand logo" href="#">LOGO</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+          aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
+          <div class="navbar-nav align-items-center">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+            <a class="nav-link" href="#">Shop</a>
+            <a class="nav-link cart" href="#"><i class="fa-solid fa-cart-shopping"></i></a>
+            <a class="btn-switch" href="../index.html" aria-disabled="true">Shop</a>
+          </div>
+        </div>
+      </div>
+    </nav>
   </header>
-  <main></main>
-  <footer>
 
+  <!-- header -->
+  <main class="admin">
+    <div class="container py-5">
+      <div class="row">
+        <div class="col-6">
+          <h2 class="heading mb-5 fw-bold">Products Management</h2>
+        </div>
+        <div class="col-6 text-end">
+          <button class="btn btn-switch">Add New Product</button>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-12">
+          <div class="input-group">
+            <input type="text" class="form-control" id="search" placeholder="Nhập tên sản phẩm...">
+            <div class="input-group-prepend">
+              <span class="input-group-text h-100 rounded-start-0" id="btnTimNV"><i class="fa fa-search"></i></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <table class="table table-bordered table-hover">
+        <thead>
+          <tr>
+            <th>Image</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Type</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </main>
+  <!-- main -->
+
+  <footer>
+    <div class="container">
+      <div class="footer">
+        <a class="navbar-brand logo" href="#">LOGO</a>
+        <div class="copyright">
+          <p class="mb-0">&copy;copyright 2024</p>
+        </div>
+        <div class="nav-foot">
+          <a class="nav-link" aria-current="page" href="#">Home</a>
+          <a class="nav-link" href="#">Shop</a>
+          <a class="btn-switch" href="../index.html" aria-disabled="true">Shop</a>
+        </div>
+      </div>
+    </div>
   </footer>
+  <!-- footer -->
+
+
+  <!-- axios -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.2/axios.min.js"
+    integrity="sha512-JSCFHhKDilTRRXe9ak/FJ28dcpOJxzQaCd3Xg8MyF6XFjODhy/YMCM8HW0TFDckNHWUewW+kfvhin43hKtJxAw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <!-- Bootstrap JavaScript Libraries -->
   <script src="../assets/js/popper.min.js"></script>
   <script src="../assets/js/bootstrap.min.js"></script>
