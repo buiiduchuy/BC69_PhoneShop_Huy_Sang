@@ -1,0 +1,19 @@
+.admin {
+  padding-top: 100px;
+  table {
+    .name {
+      font-size: 18px;
+    }
+    th {
+      font-weight: 600;
+      padding: 25px 20px;
+    }
+    td {
+      vertical-align: top;
+      padding: 25px 20px;
+    }
+    img {
+      max-width: 80px;
+    }
+  }
+}

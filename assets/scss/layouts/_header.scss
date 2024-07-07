@@ -1,0 +1,37 @@
+header {
+  box-shadow: 0 0 10px $color-blue-3;
+  position: fixed;
+  width: 100%;
+}
+.nav-link {
+  font-size: 18px;
+  padding: 0 20px !important;
+  position: relative;
+
+  &.cart {
+    &::after {
+      content: none;
+    }
+  }
+
+  &::after {
+    content: "";
+    display: block;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    background-color: $color-dark-1;
+    position: relative;
+    transition: all 0.3s ease;
+  }
+
+  &:hover {
+    &::after {
+      transform: scaleX(1);
+    }
+  }
+}
+.logo {
+  font-size: 24px;
+  font-weight: $fw-3;
+}
