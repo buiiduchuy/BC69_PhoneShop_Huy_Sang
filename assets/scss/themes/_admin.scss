@@ -5,7 +5,7 @@
       font-size: 18px;
     }
     th {
-      font-weight: 600;
+      font-weight: $fw-3;
       padding: 25px 20px;
     }
     td {
@@ -16,4 +16,25 @@
       max-width: 80px;
     }
   }
+
+  .modal {
+    label {
+      font-weight: $fw-2;
+    }
+
+    select {
+      font-size: $fs-2;
+    }
+  }
+  #btnSearchPrd {
+    cursor: pointer;
+  }
+
+  #selectSort {
+    font-size: $fs-2;
+  }
+}
+::placeholder {
+  color: #b0b0b0;
+  font-size: $fs-2;
 }
