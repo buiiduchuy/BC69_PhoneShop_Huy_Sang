@@ -1,13 +1,25 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <title>Shop Phone</title>
+  <title>SmartPhone</title>
   <!-- Required meta tags -->
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-  <link rel="shortcut icon" href="./assets/images/favicon.png" type="image/x-icon">
+  <link rel="icon" type="image/x-icon" href="./assets/images/favicon.png">
+
+  <!-- font -->
+  <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+
+  <!-- font icon -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
   <!-- Bootstrap CSS v5.3.3 -->
   <link rel="stylesheet" href="./assets/css/bootstrap.min.css" />
+
+  <!-- toastify -->
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
   <link rel="stylesheet" href="./assets/css/main.css">
 </head>
 
@@ -15,7 +27,7 @@
   <header>
     <nav class="navbar navbar-expand-lg bg-body-tertiary p-3">
       <div class="container">
-        <a class="navbar-brand logo" href="#">LOGO</a>
+        <a class="navbar-brand logo" href="/">LOGO</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
           aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -24,7 +36,10 @@
           <div class="navbar-nav align-items-center">
             <a class="nav-link active" aria-current="page" href="#">Home</a>
             <a class="nav-link" href="#">Shop</a>
-            <a class="nav-link cart" href="#"><i class="fa-solid fa-cart-shopping"></i></a>
+            <a class="nav-link cart" href="#">
+              <i class="fa-solid fa-cart-shopping"></i>
+              <span class="quantity"></span>
+            </a>
             <a class="btn-switch" href="./admin/index.html" aria-disabled="true">Admin</a>
           </div>
         </div>
@@ -74,9 +89,18 @@
       <!-- carousel -->
       <div class="block-feature">
         <h3 class="heading text-center py-3 mb-5 fw-bold">Featured Product</h3>
+        <div class="row justify-content-end mb-5">
+          <div class="col-md-2">
+            <select class="form-select form-select-lg" name="" id="selectFilter">
+              <option value="all">All Type</option>
+              <option value="apple">Apple</option>
+              <option value="samsung">SamSung</option>
+            </select>
+          </div>
+        </div>
         <div class="list-prod">
           <div class="row">
-
+            <!-- render layout card in client.js-->
           </div>
         </div>
       </div>

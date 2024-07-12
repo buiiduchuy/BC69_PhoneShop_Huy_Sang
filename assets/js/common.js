@@ -29,3 +29,21 @@ function removeVietnameseTones(str) {
   );
   return str;
 }
+
+
+// tostify
+function showError(text,duration= 3000){
+  Toastify({
+    text, // nội dung thông báo
+    duration, // thời gian hiển thị thông báo
+    // destination: "https://github.com/apvarun/toastify-js", // đường dẫn giúp người dùng truy cập khi click vào thông báo
+    close: true,
+    gravity: "top", // `top` or `bottom`
+    position: "right", // `left`, `center` or `right`
+    stopOnFocus: true, // Prevents dismissing of toast on hover
+    hideProgressBar: false,
+    style: {
+      background: "linear-gradient(to right, #2196f3, #c9d8f4)",
+    },
+  }).showToast();
+}

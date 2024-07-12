@@ -4,19 +4,28 @@
   box-sizing: border-box;
 }
 
+input,
+select {
+  outline: none;
+}
+input:focus,
+select:focus {
+  box-shadow: none !important;
+}
+
 .comp-btn, .btn-switch {
+  color: #000000;
   display: inline-block;
   padding: 10px 25px;
   border: 1px solid transparent;
   border-radius: 5px;
   text-decoration: none;
+  transition: all 0.3s ease;
 }
 
 .btn-switch {
   background-color: #000000;
   color: #fff;
-  padding: 10px 25px;
-  transition: all 0.3s ease-in;
 }
 .btn-switch:hover {
   background-color: #fff;
@@ -42,13 +51,13 @@
   font-size: 18px;
   font-weight: 500;
 }
-.card .card-img {
+.card-img {
   aspect-ratio: 1;
   margin-bottom: 10px;
   position: relative;
   width: 100%;
 }
-.card .card-img img {
+.card-img img {
   position: absolute;
   top: 0;
   left: 0;
@@ -107,8 +116,28 @@ header {
   padding: 0 20px !important;
   position: relative;
 }
+.nav-link.active::after {
+  transform: scaleX(1);
+}
+.nav-link.cart {
+  margin-right: 20px;
+}
 .nav-link.cart::after {
   content: none;
+}
+.nav-link.cart .quantity {
+  position: absolute;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #575757;
+  top: -10px;
+  color: #fff;
+  right: -2px;
+  font-size: 12px;
 }
 .nav-link::after {
   content: "";
@@ -127,6 +156,10 @@ header {
 .logo {
   font-size: 24px;
   font-weight: 600;
+}
+
+#selectFilter {
+  font-size: 16px;
 }
 
 .client {

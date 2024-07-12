@@ -1,17 +1,17 @@
 .comp-btn {
+  color: $color-dark-1;
   display: inline-block;
   padding: 10px 25px;
   border: 1px solid transparent;
   border-radius: 5px;
   text-decoration: none;
+  transition: all 0.3s ease;
 }
 
 .btn-switch {
   @extend .comp-btn;
   background-color: $color-dark-1;
   color: $color-white-1;
-  padding: 10px 25px;
-  transition: all 0.3s ease-in;
 
   &:hover {
     background-color: $color-white-1;

@@ -1,22 +1,6 @@
 let products = [];
 let BASE_URL = 'https://667fb4b4f2cb59c38dc98bf0.mockapi.io/bc69';
 
-function showError(text,duration= 3000){
-  Toastify({
-    text, // nội dung thông báo
-    duration, // thời gian hiển thị thông báo
-    // destination: "https://github.com/apvarun/toastify-js", // đường dẫn giúp người dùng truy cập khi click vào thông báo
-    close: true,
-    gravity: "top", // `top` or `bottom`
-    position: "right", // `left`, `center` or `right`
-    stopOnFocus: true, // Prevents dismissing of toast on hover
-    hideProgressBar: false,
-    style: {
-      background: "linear-gradient(to right, #2196f3, #c9d8f4)",
-    },
-  }).showToast();
-}
-
 // hide modal
 let hideModal = ()=> {
   var myModalEl = document.getElementById('exampleModal');
@@ -58,7 +42,7 @@ let renderProduct = (arr = products)=>{
       <td class="img"><img src='${item.img}'/></td>
       <td class="name">${item.name}</td>
       <td class=desc"">${item.desc}</td>
-      <td class="price">${Number(item.price).toLocaleString('it-IT', {style : 'currency', currency : 'VND'})}</td>
+      <td class="price">${Number(item.price).toLocaleString("en-US", {style:"currency", currency:"USD"})}</td>
       <td>
         <button class="btn btn-danger" onclick="removeProduct('${item.id}')">Xoá</button>
         <button class="btn btn-warning" data-bs-toggle="modal"
@@ -162,7 +146,7 @@ let updateProduct = async ()=> {
 document.querySelector(".btn-update").onclick = updateProduct
 
 
-// sort
+// sort price
 lowHightFilter = (vals) => {
   return vals.sort((a,b) => {
     const aPrice = parseFloat(a.price)
@@ -216,7 +200,7 @@ let fiterProduct = async ()=> {
       url: BASE_URL
     })
     let prodResult = getAPIProd.data.filter((prod , index)=> {
-      return removeVietnameseTones(prod.name).toLowerCase() === textSearch
+      return removeVietnameseTones(prod.name).toLowerCase().includes(textSearch)
     })
     document.querySelector(".admin .table tbody").innerHTML = renderProduct(prodResult)
   } catch (error) {
