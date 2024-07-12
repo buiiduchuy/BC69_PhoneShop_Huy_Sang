@@ -21,7 +21,13 @@
 
   <!-- Bootstrap CSS v5.3.3 -->
   <link rel="stylesheet" href="../assets/css/bootstrap.min.css" />
+<<<<<<< HEAD
 >>>>>>> devhuy
+=======
+
+  <!-- toastify -->
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+>>>>>>> devHuy
   <link rel="stylesheet" href="../assets/css/main.css">
 </head>
 
@@ -39,7 +45,7 @@
             <a class="nav-link active" aria-current="page" href="#">Home</a>
             <a class="nav-link" href="#">Shop</a>
             <a class="nav-link cart" href="#"><i class="fa-solid fa-cart-shopping"></i></a>
-            <a class="btn-switch" href="../index.html" aria-disabled="true">Shop</a>
+            <a class="btn-switch" href="../index.html" aria-disabled="true">Client</a>
           </div>
         </div>
       </div>
@@ -50,11 +56,24 @@
   <main class="admin">
     <div class="container py-5">
       <div class="row">
-        <div class="col-6">
+        <div class="col-md-8">
           <h2 class="heading mb-5 fw-bold">Products Management</h2>
         </div>
-        <div class="col-6 text-end">
-          <button class="btn btn-switch">Add New Product</button>
+        <div class="col-md-4 text-end">
+          <div class="row">
+            <div class="col-5">
+              <select class="form-select form-select-lg" name="" id="selectSort">
+                <option value="">Sort</option>
+                <option value="hightLow">Hight-Low</option>
+                <option value="lowHight">Low-Hight</option>
+              </select>
+            </div>
+            <div class="col-7">
+              <button type="button" class="btn btn-switch btn-addnew" data-bs-toggle="modal"
+                data-bs-target="#exampleModal">Add New
+                Product</button>
+            </div>
+          </div>
         </div>
       </div>
       <div class="row mb-3">
@@ -62,7 +81,7 @@
           <div class="input-group">
             <input type="text" class="form-control" id="search" placeholder="Nhập tên sản phẩm...">
             <div class="input-group-prepend">
-              <span class="input-group-text h-100 rounded-start-0" id="btnTimNV"><i class="fa fa-search"></i></span>
+              <span class="input-group-text h-100 rounded-start-0" id="btnSearchPrd"><i class="fa fa-search"></i></span>
             </div>
           </div>
         </div>
@@ -80,6 +99,78 @@
         <tbody></tbody>
       </table>
     </div>
+    <!-- modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2 class="modal-title" id="exampleModalLabel">Add new product</h2>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <form id="formProd">
+            <div class="modal-body">
+              <div class="mb-3">
+                <label for="" class="form-label">Name</label>
+                <input type="text" class="form-control" name="" id="name" placeholder="Name" />
+                <span id="helpId" class="invalid-feedback"></span>
+              </div>
+              <div class="mb-3">
+                <label for="" class="form-label">Image</label>
+                <input type="text" class="form-control" name="" id="img" placeholder="Link image" />
+                <span id="helpId" class="invalid-feedback"></span>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="mb-3">
+                    <label for="" class="form-label">Price</label>
+                    <input type="number" class="form-control" name="" id="price" placeholder="Price" />
+                    <span id="helpId" class="invalid-feedback"></span>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="mb-3">
+                    <label for="" class="form-label">Type</label>
+                    <select class="form-select form-select-lg" name="" id="type">
+                      <option value="">Select type</option>
+                      <option value="Apple">Apple</option>
+                      <option value="Samsung">SamSung</option>
+                    </select>
+                    <span id="helpId" class="invalid-feedback"></span>
+                  </div>
+                </div>
+              </div>
+              <div class="mb-3">
+                <label for="" class="form-label">Screen</label>
+                <input type="text" class="form-control" name="" id="screen" placeholder="Screen" />
+                <span id="helpId" class="invalid-feedback"></span>
+              </div>
+              <div class="mb-3">
+                <label for="" class="form-label">BackCamera</label>
+                <input type="text" class="form-control" name="" id="backCamera" placeholder="12MP..." />
+                <span id="helpId" class="invalid-feedback"></span>
+              </div>
+              <div class="mb-3">
+                <label for="" class="form-label">FrontCamera</label>
+                <input type="text" class="form-control" name="" id="frontCamera" placeholder="12MP..." />
+                <span id="helpId" class="invalid-feedback"></span>
+              </div>
+              <div class="mb-3">
+                <label for="" class="form-label">Description</label>
+                <input type="text" class="form-control" name="" id="desc" placeholder="Description" />
+                <span id="helpId" class="invalid-feedback"></span>
+              </div>
+              <input type="hidden" id="idProd" value="">
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-warning btn-update">Update
+                product</button>
+              <button type="button" class="btn btn-success btn-add">Add product</button>
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
   </main>
   <!-- main -->
 
@@ -93,7 +184,7 @@
         <div class="nav-foot">
           <a class="nav-link" aria-current="page" href="#">Home</a>
           <a class="nav-link" href="#">Shop</a>
-          <a class="btn-switch" href="../index.html" aria-disabled="true">Shop</a>
+          <a class="btn-switch" href="../index.html" aria-disabled="true">Client</a>
         </div>
       </div>
     </div>
@@ -105,9 +196,16 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.2/axios.min.js"
     integrity="sha512-JSCFHhKDilTRRXe9ak/FJ28dcpOJxzQaCd3Xg8MyF6XFjODhy/YMCM8HW0TFDckNHWUewW+kfvhin43hKtJxAw=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <!-- toastify -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
   <!-- Bootstrap JavaScript Libraries -->
   <script src="../assets/js/popper.min.js"></script>
   <script src="../assets/js/bootstrap.min.js"></script>
+  <!-- admin -->
+  <script src="../assets/js/common.js"></script>
+  <script src="../assets/model/Product.js"></script>
+  <script src="../assets/js/validation/validation.js"></script>
   <script src="../assets/js/admin.js"></script>
 </body>
 </html>
