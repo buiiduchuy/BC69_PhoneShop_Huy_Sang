@@ -35,10 +35,9 @@
         <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
           <div class="navbar-nav align-items-center">
             <a class="nav-link active" aria-current="page" href="#">Home</a>
-            <a class="nav-link" href="#">Shop</a>
-            <a class="nav-link cart" href="#">
+            <a class="nav-link cart" href="#" data-bs-toggle="modal" data-bs-target="#modalProd">
               <i class="fa-solid fa-cart-shopping"></i>
-              <span class="quantity"></span>
+              <span class="quantity">0</span>
             </a>
             <a class="btn-switch" href="./admin/index.html" aria-disabled="true">Admin</a>
           </div>
@@ -48,7 +47,7 @@
   </header>
 
   <!-- header -->
-  <main class="client">
+  <main class="client pb-4">
     <div class="container">
       <div id="carouselExampleIndicators" class="carousel slide mb-5">
         <div class="carousel-indicators">
@@ -90,7 +89,7 @@
       <div class="block-feature">
         <h3 class="heading text-center py-3 mb-5 fw-bold">Featured Product</h3>
         <div class="row justify-content-end mb-5">
-          <div class="col-md-2">
+          <div class="col-lg-2 col-md-3 col-6">
             <select class="form-select form-select-lg" name="" id="selectFilter">
               <option value="all">All Type</option>
               <option value="apple">Apple</option>
@@ -109,15 +108,13 @@
   <!-- main -->
 
   <footer>
-    <div class="container">
+    <div class=" container">
       <div class="footer">
         <a class="navbar-brand logo" href="#">LOGO</a>
         <div class="copyright">
           <p class="mb-0">&copy;copyright 2024</p>
         </div>
         <div class="nav-foot">
-          <a class="nav-link" aria-current="page" href="#">Home</a>
-          <a class="nav-link" href="#">Shop</a>
           <a class="btn-switch" href="./admin/index.html" aria-disabled="true">Admin</a>
         </div>
       </div>
@@ -125,6 +122,71 @@
   </footer>
   <!-- footer -->
 
+  <!-- Modal Product-->
+  <div class="modal fade" id="modalProd" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class=" modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title" id="exampleModalLabel">Cart Management</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body table-responsive">
+          <table class="table table-hover tableProCart">
+            <thead>
+              <tr>
+                <th>Image</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+            <tfoot>
+              <tr>
+                <td colspan="2"><strong>Total:</strong></td>
+                <td class="total"></td>
+                <td></td>
+                <td></td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary btn-checkout" data-bs-target="#modalThanks"
+            data-bs-toggle="modal">Checkout</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- modal thanks -->
+  <div class="modal fade" id="modalThanks" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class=" modal-content">
+        <div class="modal-header">
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="d-flex align-items-center justify-content-center flex-column py-5 px-4">
+            <h2 class="checkout-success block mb-3">Checkout success <i class="fa-regular fa-circle-check"></i>
+            </h2>
+            <h3 class="thanks block">Thank you <i class="fa-solid fa-heart"></i></h3>
+          </div>
+        </div>
+        <!-- <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div> -->
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Bootstrap JavaScript Libraries -->
+  <script src="./assets/js/bootstrap.bundle.min.js"></script>
 
   <!-- axios -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.2/axios.min.js"
@@ -133,10 +195,6 @@
 
   <!-- toastify -->
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
-  <!-- Bootstrap JavaScript Libraries -->
-  <script src="./assets/js/bootstrap.bundle.min.js"></script>
-  <script src="./assets/js/popper.min.js"></script>
-  <script src="./assets/js/bootstrap.min.js"></script>
   <!-- admin -->
   <script src="./assets/js/common.js"></script>
   <script src="./assets/js/client.js"></script>

@@ -3,6 +3,20 @@ header {
   position: fixed;
   width: 100%;
   z-index: 99;
+
+  .navbar-toggler {
+    outline: none !important;
+    box-shadow: none !important;
+  }
+  @include responsive("lg") {
+    .navbar-nav {
+      flex-direction: row;
+      justify-content: center;
+    }
+    .navbar-collapse {
+      padding-top: 20px;
+    }
+  }
 }
 .nav-link {
   font-size: 18px;

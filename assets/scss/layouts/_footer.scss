@@ -8,6 +8,10 @@ footer {
     .copyright {
       font-weight: $fw-1;
       margin: 0 20px;
+
+      @include responsive("md") {
+        font-size: $fs-2;
+      }
     }
     .nav-foot {
       flex: auto;

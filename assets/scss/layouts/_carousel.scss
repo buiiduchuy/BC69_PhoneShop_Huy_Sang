@@ -13,4 +13,10 @@
   .carousel-indicators [data-bs-target] {
     background-color: #505050;
   }
+
+  @include responsive("lg") {
+    .carousel-indicators {
+      margin-bottom: 0;
+    }
+  }
 }

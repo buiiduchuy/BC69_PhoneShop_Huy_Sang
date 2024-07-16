@@ -1,3 +1,7 @@
 .heading {
   font-size: 30px;
+
+  @include responsive("md") {
+    font-size: 26px;
+  }
 }

@@ -32,7 +32,7 @@ function removeVietnameseTones(str) {
 
 
 // tostify
-function showError(text,duration= 3000){
+function showMessage(text,duration= 2000){
   Toastify({
     text, // nội dung thông báo
     duration, // thời gian hiển thị thông báo
@@ -43,7 +43,7 @@ function showError(text,duration= 3000){
     stopOnFocus: true, // Prevents dismissing of toast on hover
     hideProgressBar: false,
     style: {
-      background: "linear-gradient(to right, #2196f3, #c9d8f4)",
+      background: "linear-gradient(to right, rgb(105 155 104), rgb(230 241 225))",
     },
   }).showToast();
 }

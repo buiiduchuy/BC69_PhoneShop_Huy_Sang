@@ -33,6 +33,11 @@
   #selectSort {
     font-size: $fs-2;
   }
+
+  .table {
+    @include responsive("lg") {
+    }
+  }
 }
 ::placeholder {
   color: #b0b0b0;

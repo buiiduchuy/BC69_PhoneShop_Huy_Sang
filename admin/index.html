@@ -5,7 +5,7 @@
   <!-- Required meta tags -->
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-  <link rel="icon" type="image/x-icon" href=".//assets/images/favicon.png">
+  <link rel="icon" type="image/x-icon" href="../assets/images/favicon.png">
 
   <!-- font -->
   <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
@@ -34,7 +34,7 @@
         </button>
         <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
           <div class="navbar-nav align-items-center">
-            <a class="btn-switch" href="../index.html" aria-disabled="true">Client</a>
+            <a class="btn-switch" href="../index.html" aria-disabled="true">Shop</a>
           </div>
         </div>
       </div>
@@ -75,18 +75,20 @@
           </div>
         </div>
       </div>
-      <table class="table table-bordered table-hover">
-        <thead>
-          <tr>
-            <th>Image</th>
-            <th>Name</th>
-            <th>Description</th>
-            <th>Type</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody></tbody>
-      </table>
+      <div class="table-responsive">
+        <table class="table table-bordered table-hover">
+          <thead>
+            <tr>
+              <th>Image</th>
+              <th>Name</th>
+              <th>Description</th>
+              <th>Type</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
     </div>
     <!-- modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -148,7 +150,8 @@
                 <input type="text" class="form-control" name="" id="desc" placeholder="Description" />
                 <span id="helpId" class="invalid-feedback"></span>
               </div>
-              <input type="hidden" id="idProd" value="">
+              <!-- <input type="hidden" id="idProd" value=""> -->
+              <span id="idProd" class="visually-hidden"></span>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-warning btn-update">Update
@@ -187,12 +190,11 @@
   <!-- toastify -->
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
   <!-- Bootstrap JavaScript Libraries -->
-  <script src="../assets/js/popper.min.js"></script>
-  <script src="../assets/js/bootstrap.min.js"></script>
+  <script src="../assets/js/bootstrap.bundle.min.js"></script>
   <!-- admin -->
-  <script src="../assets/js/common.js"></script>
-  <script src="../assets/model/Product.js"></script>
   <script src="../assets/js/validation/validation.js"></script>
+  <script src="../assets/model/Product.js"></script>
+  <script src="../assets/js/common.js"></script>
   <script src="../assets/js/admin.js"></script>
 </body>
 </html>

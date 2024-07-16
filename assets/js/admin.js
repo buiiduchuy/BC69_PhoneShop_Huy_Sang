@@ -8,17 +8,6 @@ let hideModal = ()=> {
   modal.hide();
 }
 
-// get info product
-let getInfoProduct = ()=> {
-  let itemProduct = new Product();
-  let arrInput = document.querySelectorAll('.modal input , .modal select');
-  for(let input of arrInput){
-    const {id,value} = input
-    itemProduct[id] = value
-  }
-  return itemProduct
-}
-
 // get API
 let getAPI = async ()=> {
   try {
@@ -33,6 +22,26 @@ let getAPI = async ()=> {
 }
 getAPI();
 
+// get info product
+let getInfoProduct = ()=> {
+  let itemProduct = new Product();
+  let arrInput = document.querySelectorAll('.modal input , .modal select');
+  let flagCkeck = true
+  for(let input of arrInput){
+    const {id,value} = input
+    itemProduct[id] = value
+    let elem = input.nextElementSibling;
+    let checkEmplyValue = checkEmpty(elem,input.value);
+    flagCkeck&=checkEmplyValue
+    if(!checkEmplyValue) {
+      continue
+    }
+  }
+  if(flagCkeck) {
+    return itemProduct
+  }
+}
+
 // render product
 let renderProduct = (arr = products)=>{
   let content =''
@@ -44,9 +53,11 @@ let renderProduct = (arr = products)=>{
       <td class=desc"">${item.desc}</td>
       <td class="price">${Number(item.price).toLocaleString("en-US", {style:"currency", currency:"USD"})}</td>
       <td>
-        <button class="btn btn-danger" onclick="removeProduct('${item.id}')">Xoá</button>
+        <div class="d-flex align-items-center justify-content-center">
+        <button class="btn btn-danger me-1" onclick="removeProduct('${item.id}')">Delete</button>
         <button class="btn btn-warning" data-bs-toggle="modal"
-            data-bs-target="#exampleModal" onclick="editProduct('${item.id}')">Sửa</button>
+            data-bs-target="#exampleModal" onclick="editProduct('${item.id}')">Edit</button>
+        </div>
       </td>
     </tr>
     `
@@ -63,9 +74,9 @@ let removeProduct = async (id)=> {
         url: `${BASE_URL}/${id}`,
       })
       getAPI();
-      showError('Deleta success !')
+      showMessage('Deleta success !')
     } catch (error) {
-      showError('Deleta fail !')
+      showMessage('Deleta fail !')
     }
   } else {
     return
@@ -75,26 +86,20 @@ let removeProduct = async (id)=> {
 // add product
 let addProduct = async ()=> {
   let infoProduct = getInfoProduct();
-  let arrInput = document.querySelectorAll('.modal input , .modal select');
-  let flagCkeck = true
-  for(let input of arrInput) {
-    let elem = input.nextElementSibling;
-    let checkEmplyValue = checkEmpty(elem,input.value);
-    flagCkeck&=checkEmplyValue
+  if(!infoProduct) {
+    return false;
   }
-  if(!!flagCkeck) {
-    try {
-      let getProductAPI = await axios({
-        method: "POST",
-        url: BASE_URL,
-        data: infoProduct
-      })
-      showError('Add product success!')
-      hideModal()
-      getAPI();
-    } catch (error) {
-      showError('Add product fail!')
-    }
+  try {
+    let getProductAPI = await axios({
+      method: "POST",
+      url: BASE_URL,
+      data: infoProduct
+    })
+    showMessage('Add product success!')
+    hideModal()
+    getAPI();
+  } catch (error) {
+    showMessage('Add product fail!')
   }
 }
 
@@ -135,7 +140,7 @@ let updateProduct = async ()=> {
       url: `${BASE_URL}/${id}`,
       data: infoprod
     })
-    showError('Update product success!');
+    showMessage('Update product success!');
     hideModal();
     getAPI();
   } catch (error) {
@@ -144,7 +149,6 @@ let updateProduct = async ()=> {
 }
 
 document.querySelector(".btn-update").onclick = updateProduct
-
 
 // sort price
 lowHightFilter = (vals) => {
@@ -165,7 +169,6 @@ hightLowFilter = (vals) => {
 // sort product
 let sortPrice = async ()=> {
   let select = document.getElementById("selectSort").value
-  console.log("select: ", select);
   try {
     let getAPIProd = await axios({
       method: "GET",
@@ -181,6 +184,7 @@ let sortPrice = async ()=> {
         document.querySelector(".admin .table tbody").innerHTML = renderProduct(productLH)
         break;
       default:
+        document.querySelector(".admin .table tbody").innerHTML = renderProduct(getAPIProd.data)
         break;
     }
   } catch (error) {

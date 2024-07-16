@@ -1,0 +1,69 @@
+#modalProd {
+  tr {
+    vertical-align: middle;
+    .total {
+      font-weight: $fw-4;
+    }
+    &:hover {
+      .deleItem {
+        visibility: visible;
+      }
+    }
+    .deleItem {
+      cursor: pointer;
+      font-size: $fs-6;
+      visibility: hidden;
+      position: absolute;
+      top: -7px;
+      right: 1px;
+    }
+  }
+  td {
+    position: relative;
+    &:nth-child(4) {
+      text-align: center;
+    }
+    @include responsive("lg") {
+      font-size: $fs-2;
+    }
+  }
+  img {
+    max-width: 100px;
+    height: auto;
+    @include responsive("lg") {
+      max-width: 80px;
+    }
+  }
+  .checkout-success {
+    i {
+      color: #00ff08;
+      margin-left: 10px;
+    }
+  }
+  .thanks {
+    i {
+      color: red;
+      margin-left: 10px;
+    }
+  }
+  @include responsive("lg") {
+    .modal-dialog {
+      max-width: 650px;
+    }
+  }
+
+  @include responsive("sm") {
+    .tableProCart {
+      min-width: 500px;
+    }
+  }
+}
+.modal-backdrop {
+  /* bug fix - no overlay */
+  display: none;
+}
+
+.modal {
+  /* bug fix - custom overlay */
+  background-color: rgba(10, 10, 10, 0.45);
+}
