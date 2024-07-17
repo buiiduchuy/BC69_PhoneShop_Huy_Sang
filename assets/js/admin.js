@@ -108,12 +108,21 @@ document.querySelector(".btn-addnew").onclick = function(){
   document.getElementById("formProd").reset();
   document.querySelector(".btn-update").setAttribute("disabled", "");
   document.querySelector(".btn-add").removeAttribute("disabled", "");
+  document.getElementById("formProd").reset();
+  let arrSpan = document.querySelectorAll("#formProd span")
+  for(let span of arrSpan) {
+    span.style.display = "none"
+  }
 };
 
 // edit product
 let editProduct = async (id)=> {
   document.querySelector(".btn-add").setAttribute("disabled", "");
   document.querySelector(".btn-update").removeAttribute("disabled", "");
+  let arrSpan = document.querySelectorAll("#formProd span")
+  for(let span of arrSpan) {
+    span.style.display = "none"
+  }
   try {
     let getApiProd = await axios({
       method: 'GET',
