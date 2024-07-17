@@ -22,6 +22,12 @@ select:focus {
   text-decoration: none;
   transition: all 0.3s ease;
 }
+@media screen and (max-width: 991px) {
+  .comp-btn, .btn-switch {
+    font-size: 14px;
+    padding: 10px 15px;
+  }
+}
 
 .btn-switch {
   background-color: #000000;
@@ -41,6 +47,9 @@ select:focus {
   transition: all 0.3s ease;
 }
 @media screen and (max-width: 767px) {
+  .card {
+    padding: 20px 10px 15px;
+  }
   .card .card-body {
     padding: 1rem 0;
   }
@@ -79,7 +88,7 @@ select:focus {
 .heading {
   font-size: 30px;
 }
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 991px) {
   .heading {
     font-size: 26px;
   }
@@ -249,6 +258,7 @@ header .navbar-toggler {
 @media screen and (max-width: 991px) {
   #modalProd .modal-dialog {
     max-width: 650px;
+    transform: translateY(50%);
   }
 }
 @media screen and (max-width: 567px) {
@@ -274,8 +284,18 @@ header .navbar-toggler {
 .admin {
   padding-top: 100px;
 }
+@media screen and (max-width: 767px) {
+  .admin table {
+    max-width: 650px;
+  }
+}
 .admin table .name {
   font-size: 18px;
+}
+@media screen and (max-width: 991px) {
+  .admin table .name {
+    font-size: 16px;
+  }
 }
 .admin table th {
   font-weight: 600;
@@ -284,6 +304,11 @@ header .navbar-toggler {
 .admin table td {
   vertical-align: top;
   padding: 25px 20px;
+}
+@media screen and (max-width: 991px) {
+  .admin table td {
+    font-size: 14px;
+  }
 }
 .admin table img {
   max-width: 80px;
@@ -300,10 +325,17 @@ header .navbar-toggler {
 .admin #selectSort {
   font-size: 14px;
 }
+@media screen and (max-width: 991px) {
+  .admin .btn {
+    font-size: 14px;
+  }
+}
+
 ::-moz-placeholder {
   color: #b0b0b0;
   font-size: 14px;
 }
+
 ::placeholder {
   color: #b0b0b0;
   font-size: 14px;

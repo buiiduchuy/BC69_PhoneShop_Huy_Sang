@@ -1,8 +1,15 @@
 .admin {
   padding-top: 100px;
   table {
+    @include responsive("md") {
+      max-width: 650px;
+    }
+
     .name {
       font-size: 18px;
+      @include responsive("lg") {
+        font-size: $fs-3;
+      }
     }
     th {
       font-weight: $fw-3;
@@ -11,6 +18,10 @@
     td {
       vertical-align: top;
       padding: 25px 20px;
+
+      @include responsive("lg") {
+        font-size: $fs-2;
+      }
     }
     img {
       max-width: 80px;
@@ -36,6 +47,12 @@
 
   .table {
     @include responsive("lg") {
+    }
+  }
+
+  .btn {
+    @include responsive("lg") {
+      font-size: $fs-2;
     }
   }
 }

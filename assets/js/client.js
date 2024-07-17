@@ -1,5 +1,6 @@
 let products = [];
 let BASE_URL = 'https://667fb4b4f2cb59c38dc98bf0.mockapi.io/bc69';
+let arrProduct = []
 
 // get API
 let getApi = async()=> {
@@ -20,7 +21,7 @@ let renderCard = (arr = products)=> {
   let content= "" ;
   for(let item of arr) {
     content += `
-    <div class="col-xl-3 col-lg-4 col-6 mb-lg-5 mb-md-4">
+    <div class="col-xl-3 col-lg-4 col-6 mb-4">
       <div class="card text-center">
         <div class="card-img">
           <img src="${item.img}" alt="${item.name}" class="img-fluid"/>
@@ -60,14 +61,19 @@ let filterName = async ()=> {
 document.getElementById("selectFilter").onchange = filterName
 
 // set localStorage
-function setLocalStorage(arr= []) {
+function setLocalStorage(arr= arrProduct) {
   localStorage.setItem("productsLocal", JSON.stringify(arr));
 }
 
 // get localStorage
 let getLocalStorage = (key="productsLocal")=> {
-  return JSON.parse(localStorage.getItem(key))
+  let getLocal = JSON.parse(localStorage.getItem(key))
+  if(getLocal) {
+    arrProduct = getLocal
+    getApi()
+  }
 }
+getLocalStorage()
 
 // render item in cart
 let renderItemCart = (arr = products)=> {
@@ -93,16 +99,20 @@ let renderItemCart = (arr = products)=> {
 // render cart
 let renderCart = ()=> {
   let total = 0;
-  let getLocal = getLocalStorage("productsLocal") ? getLocalStorage("productsLocal") : [];
-  for(let item of getLocal) {
-    total += Number(item.price * item.quantity)
+  console.log("arrProduct in cart: ", arrProduct);
+  if(arrProduct.length != 0) {
+    for(let item of arrProduct) {
+      total += Number(item.price * item.quantity)
+    }
   }
-  if(!getLocal) {
-    document.querySelector("#modalProd .modal-body").innerHTML = renderItemCart(getLocal)
+  if(!arrProduct || arrProduct.length === 0) {
+    document.querySelector("#modalProd tbody").innerHTML = renderItemCart(arrProduct)
     document.querySelector(".btn-checkout").setAttribute("disabled","")
+    document.querySelector("#modalProd .total").innerHTML = ``
   }else {
-    document.querySelector("#modalProd tbody").innerHTML = renderItemCart(getLocal)
+    document.querySelector("#modalProd tbody").innerHTML = renderItemCart(arrProduct)
     document.querySelector("#modalProd .total").innerHTML = `$${total.toFixed(2)}`
+    document.querySelector(".btn-checkout").removeAttribute("disabled","")
   }
 }
 
@@ -112,13 +122,12 @@ document.querySelector(".cart").onclick = renderCart
 // quantity cart
 let quantityCart= ()=> {
   let quantity = 0
-  let getLocal = getLocalStorage("productsLocal") ? getLocalStorage("productsLocal") : []
-  for(let item of getLocal) {{
+  for(let item of arrProduct) {
     quantity += item.quantity
-  }}
+  }
+  console.log("quantity: ", quantity);
   document.querySelector(".quantity").innerHTML = quantity
 }
-quantityCart()
 
 // add to cart
 let addToCart = async (idProd)=> {
@@ -131,16 +140,16 @@ let addToCart = async (idProd)=> {
       ...getAPI.data,
       quantity: 1
     }
-    let getLocal = getLocalStorage("productsLocal") ? getLocalStorage("productsLocal") : [];
-    let index = getLocal.findIndex((item)=> item.id === newProd.id)
+    let index = arrProduct.findIndex((item)=> item.id === newProd.id)
     if(index !== -1) {
-      getLocal[index].quantity += newProd.quantity
+      arrProduct[index].quantity += newProd.quantity
     }else {
-      getLocal.push(newProd)
+      arrProduct.push(newProd)
     }
-    setLocalStorage(getLocal)
+    setLocalStorage(arrProduct)
     quantityCart()
     showMessage("Added to cart !")
+    console.log("arrProduct: ", arrProduct);
   } catch (error) {
     console.log("error: ", error);
   }
@@ -148,24 +157,22 @@ let addToCart = async (idProd)=> {
 
 // handle event quantity cart
 let handleQuantity = (id,quantity)=> {
-  let getLocal = getLocalStorage("productsLocal") ? getLocalStorage("productsLocal") : [];
-  for(let index of getLocal) {
+  for(let index of arrProduct) {
     if(index.id === id){
       index.quantity = index.quantity + quantity || 1
     }
   }
-  setLocalStorage(getLocal)
+  setLocalStorage(arrProduct)
   quantityCart();
   renderCart();
 }
 
 // remove item in cart
 let removeItemInCart = (idProd)=>{
-  let getLocal = getLocalStorage("productsLocal") ? getLocalStorage("productsLocal") : [];
-  let index = getLocal.findIndex((item)=> item.id === idProd)
+  let index = arrProduct.findIndex((item)=> item.id === idProd)
   if(index !== -1) {
-    getLocal.splice(index,1)
-    setLocalStorage(getLocal)
+    arrProduct.splice(index,1)
+    setLocalStorage(arrProduct)
     renderCart()
     quantityCart()
   }
@@ -173,8 +180,9 @@ let removeItemInCart = (idProd)=>{
 
 // checkout
 let checkout = ()=> {
-  localStorage.clear();
-  setLocalStorage([])
+  localStorage.removeItem("productsLocal")
+  setLocalStorage(arrProduct = [])
+  renderCart()
   quantityCart()
 }
 document.querySelector(".btn-checkout").onclick = checkout

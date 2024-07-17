@@ -6,6 +6,8 @@
   transition: all 0.3s ease;
 
   @include responsive("md") {
+    padding: 20px 10px 15px;
+
     .card-body {
       padding: 1rem 0;
     }

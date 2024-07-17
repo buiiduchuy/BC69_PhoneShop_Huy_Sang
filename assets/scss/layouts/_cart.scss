@@ -49,6 +49,7 @@
   @include responsive("lg") {
     .modal-dialog {
       max-width: 650px;
+      transform: translateY(50%);
     }
   }
 
