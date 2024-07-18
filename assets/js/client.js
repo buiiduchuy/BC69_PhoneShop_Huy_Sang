@@ -99,7 +99,6 @@ let renderItemCart = (arr = products)=> {
 // render cart
 let renderCart = ()=> {
   let total = 0;
-  console.log("arrProduct in cart: ", arrProduct);
   if(arrProduct.length != 0) {
     for(let item of arrProduct) {
       total += Number(item.price * item.quantity)
@@ -125,10 +124,9 @@ let quantityCart= ()=> {
   for(let item of arrProduct) {
     quantity += item.quantity
   }
-  console.log("quantity: ", quantity);
   document.querySelector(".quantity").innerHTML = quantity
 }
-
+quantityCart()
 // add to cart
 let addToCart = async (idProd)=> {
   try {
@@ -149,7 +147,6 @@ let addToCart = async (idProd)=> {
     setLocalStorage(arrProduct)
     quantityCart()
     showMessage("Added to cart !")
-    console.log("arrProduct: ", arrProduct);
   } catch (error) {
     console.log("error: ", error);
   }

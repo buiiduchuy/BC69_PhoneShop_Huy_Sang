@@ -142,18 +142,20 @@ let editProduct = async (id)=> {
 // update product
 let updateProduct = async ()=> {
   let infoprod = getInfoProduct()
-  let id = document.getElementById("idProd").value
-  try {
-    let getApiProd = await axios({
-      method: "PUT",
-      url: `${BASE_URL}/${id}`,
-      data: infoprod
-    })
-    showMessage('Update product success!');
-    hideModal();
-    getAPI();
-  } catch (error) {
-    console.log("error: ", error);
+  if(infoprod) {
+    let id = document.getElementById("idProd").value
+    try {
+      let getApiProd = await axios({
+        method: "PUT",
+        url: `${BASE_URL}/${id}`,
+        data: infoprod
+      })
+      showMessage('Update product success!');
+      hideModal();
+      getAPI();
+    } catch (error) {
+      console.log("error: ", error);
+    }
   }
 }
 
