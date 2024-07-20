@@ -258,7 +258,6 @@ header .navbar-toggler {
 @media screen and (max-width: 991px) {
   #modalProd .modal-dialog {
     max-width: 650px;
-    transform: translateY(50%);
   }
 }
 @media screen and (max-width: 567px) {
