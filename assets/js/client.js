@@ -3,18 +3,16 @@ let BASE_URL = 'https://667fb4b4f2cb59c38dc98bf0.mockapi.io/bc69';
 let arrProduct = []
 
 // get API
-let getApi = async()=> {
+let fetchProducts = async()=> {
   try {
-    let listProds = await axios({
-      method: "GET",
-      url: BASE_URL
-    })
+    let listProds = await axios.get(BASE_URL)
+    products = listProds.data
     document.querySelector(".list-prod .row").innerHTML = renderCard(listProds.data)
   } catch (error) {
-    console.log("error: ", error);
+    console.log("get api error: ", error);
   }
 }
-getApi()
+fetchProducts()
 
 // render list card
 let renderCard = (arr = products)=> {
@@ -39,14 +37,10 @@ let renderCard = (arr = products)=> {
 }
 
 // filter type
-let filterName = async ()=> {
+let filterName = ()=> {
   let selected = document.getElementById("selectFilter").value
   try {
-    let getAPI = await axios({
-      method: "GET",
-      url: BASE_URL,
-    })
-    let listItem = getAPI.data.filter((item)=> {
+    let listItem = products.filter((item)=> {
       if(selected === "all") {
         return item
       }else {
@@ -55,7 +49,7 @@ let filterName = async ()=> {
     })
     document.querySelector(".list-prod .row").innerHTML = renderCard(listItem)
   } catch (error) {
-    console.log("error: ", error);
+    console.log("Filter product error: ", error);
   }
 }
 document.getElementById("selectFilter").onchange = filterName
@@ -70,7 +64,7 @@ let getLocalStorage = (key="productsLocal")=> {
   let getLocal = JSON.parse(localStorage.getItem(key))
   if(getLocal) {
     arrProduct = getLocal
-    getApi()
+    fetchProducts()
   }
 }
 getLocalStorage()
@@ -130,10 +124,7 @@ quantityCart()
 // add to cart
 let addToCart = async (idProd)=> {
   try {
-    let getAPI = await axios({
-      method: "GET",
-      url: `${BASE_URL}/${idProd}`
-    })
+    let getAPI = await axios.get(`${BASE_URL}/${idProd}`)
     let newProd = {
       ...getAPI.data,
       quantity: 1
@@ -148,7 +139,7 @@ let addToCart = async (idProd)=> {
     quantityCart()
     showMessage("Added to cart !")
   } catch (error) {
-    console.log("error: ", error);
+    console.log("add cart error: ", error);
   }
 }
 
