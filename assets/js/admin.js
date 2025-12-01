@@ -1,26 +1,40 @@
+// =======================
+// GLOBAL
+// =======================
 let products = [];
 let BASE_URL = 'https://667fb4b4f2cb59c38dc98bf0.mockapi.io/bc69';
+const tbody = document.querySelector(".admin .table tbody");
 
+// =======================
+// UTILITIES
+// =======================
 // hide modal
 let hideModal = ()=> {
   var myModalEl = document.getElementById('exampleModal');
-  var modal = bootstrap.Modal.getInstance(myModalEl)
-  modal.hide();
+  bootstrap.Modal.getInstance(myModalEl).hide();
 }
 
+const resetForm = () => {
+  const form = document.getElementById("formProd");
+  form.reset();
+  form.querySelectorAll("span").forEach(span => span.style.display = "none");
+};
+
+const showInTable = (data) => {
+  tbody.innerHTML = renderProduct(data);
+};
+
 // get API
-let getAPI = async ()=> {
+let fetchProducts = async ()=> {
   try {
-    let products = await axios({
-      method: 'GET',
-      url: BASE_URL,
-    })
-    document.querySelector(".admin .table tbody").innerHTML = renderProduct(products.data)
+    let res = await axios.get(BASE_URL);
+    products = res.data;
+    showInTable(res.data);
   } catch (error) {
-    console.log("error: ", error);
+    console.log("Get api error: ", error);
   }
 }
-getAPI();
+fetchProducts();
 
 // get info product
 let getInfoProduct = ()=> {
@@ -37,9 +51,10 @@ let getInfoProduct = ()=> {
       continue
     }
   }
-  if(flagCkeck) {
-    return itemProduct
-  }
+  // if(flagCkeck) {
+  //   return itemProduct
+  // }
+  return flagCkeck ? itemProduct : null;
 }
 
 // render product
@@ -69,14 +84,15 @@ let renderProduct = (arr = products)=>{
 let removeProduct = async (id)=> {
   if (confirm(`Delete product has ID: ${id} !`) == true) {
     try {
-      let products = await axios({
-        method: 'DELETE',
-        url: `${BASE_URL}/${id}`,
-      })
-      getAPI();
-      showMessage('Deleta success !')
+      // let products = await axios({
+      //   method: 'DELETE',
+      //   url: `${BASE_URL}/${id}`,
+      // })
+      await axios.delete(`${BASE_URL}/${id}`)
+      showMessage('Delete success !')
+      fetchProducts();
     } catch (error) {
-      showMessage('Deleta fail !')
+      showMessage('Delete fail !')
     }
   } else {
     return
@@ -86,18 +102,12 @@ let removeProduct = async (id)=> {
 // add product
 let addProduct = async ()=> {
   let infoProduct = getInfoProduct();
-  if(!infoProduct) {
-    return false;
-  }
+  if(!infoProduct) return;
   try {
-    let getProductAPI = await axios({
-      method: "POST",
-      url: BASE_URL,
-      data: infoProduct
-    })
+    await axios.post(BASE_URL,infoProduct)
     showMessage('Add product success!')
     hideModal()
-    getAPI();
+    fetchProducts();
   } catch (error) {
     showMessage('Add product fail!')
   }
@@ -105,17 +115,13 @@ let addProduct = async ()=> {
 
 document.querySelector(".btn-add").onclick = addProduct;
 document.querySelector(".btn-addnew").onclick = function(){
-  document.getElementById("formProd").reset();
   document.querySelector(".btn-update").setAttribute("disabled", "");
   document.querySelector(".btn-add").removeAttribute("disabled", "");
-  document.getElementById("formProd").reset();
-  let arrSpan = document.querySelectorAll("#formProd span")
-  for(let span of arrSpan) {
-    span.style.display = "none"
-  }
+  resetForm()
 };
 
 // edit product
+let idProd = document.getElementById("idProd");
 let editProduct = async (id)=> {
   document.querySelector(".btn-add").setAttribute("disabled", "");
   document.querySelector(".btn-update").removeAttribute("disabled", "");
@@ -124,18 +130,15 @@ let editProduct = async (id)=> {
     span.style.display = "none"
   }
   try {
-    let getApiProd = await axios({
-      method: 'GET',
-      url: `${BASE_URL}/${id}`
-    })
+    let getApiProd = await axios.get(`${BASE_URL}/${id}`)
     let result = getApiProd.data
     let arrInput = document.querySelectorAll('.modal input , .modal select');
     for(let input of arrInput) {
       input.value = result[input.id]
     }
-    document.getElementById("idProd").value = id
+    idProd.value = id
   } catch (error) {
-    console.log("error: ", error);
+    console.log("Get api error: ", error);
   }
 }
 
@@ -143,18 +146,14 @@ let editProduct = async (id)=> {
 let updateProduct = async ()=> {
   let infoprod = getInfoProduct()
   if(infoprod) {
-    let id = document.getElementById("idProd").value
+    let id = idProd.value
     try {
-      let getApiProd = await axios({
-        method: "PUT",
-        url: `${BASE_URL}/${id}`,
-        data: infoprod
-      })
+      await axios.put(`${BASE_URL}/${id}`,infoprod)
       showMessage('Update product success!');
       hideModal();
-      getAPI();
+      fetchProducts();
     } catch (error) {
-      console.log("error: ", error);
+      console.log("Put api error: ", error);
     }
   }
 }
@@ -162,64 +161,78 @@ let updateProduct = async ()=> {
 document.querySelector(".btn-update").onclick = updateProduct
 
 // sort price
-lowHightFilter = (vals) => {
-  return vals.sort((a,b) => {
-    const aPrice = parseFloat(a.price)
-    const bPrice = parseFloat(b.price)
-    return aPrice - bPrice;
-  });
-}
-hightLowFilter = (vals) => {
-  return vals.sort((a,b) => {
-    const aPrice = parseFloat(a.price)
-    const bPrice = parseFloat(b.price)
-    return bPrice - aPrice;
-  });
-}
+// lowHightFilter = (vals) => {
+//   return vals.sort((a,b) => {
+//     const aPrice = parseFloat(a.price)
+//     const bPrice = parseFloat(b.price)
+//     return aPrice - bPrice;
+//   });
+// }
+// hightLowFilter = (vals) => {
+//   return vals.sort((a,b) => {
+//     const aPrice = parseFloat(a.price)
+//     const bPrice = parseFloat(b.price)
+//     return bPrice - aPrice;
+//   });
+// }
+
+// sortMethod = (vals,method) => {
+//   if(method==="hightLow") {
+//     return vals.sort((a,b) => {
+//     const aPrice = parseFloat(a.price)
+//     const bPrice = parseFloat(b.price)
+//     return bPrice - aPrice;
+//   });
+//   }else {
+//     return vals.sort((a,b) => {
+//     const aPrice = parseFloat(a.price)
+//     const bPrice = parseFloat(b.price)
+//     return aPrice - bPrice;
+//   });
+//   }
+// }
 
 // sort product
 let sortPrice = async ()=> {
-  let select = document.getElementById("selectSort").value
-  try {
-    let getAPIProd = await axios({
-      method: "GET",
-      url: BASE_URL
-    })
-    switch (select) {
-      case "hightLow":
-        let productHL = hightLowFilter(getAPIProd.data)
-        document.querySelector(".admin .table tbody").innerHTML = renderProduct(productHL)
-        break;
-      case "lowHight":
-        let productLH = lowHightFilter(getAPIProd.data)
-        document.querySelector(".admin .table tbody").innerHTML = renderProduct(productLH)
-        break;
-      default:
-        document.querySelector(".admin .table tbody").innerHTML = renderProduct(getAPIProd.data)
-        break;
-    }
-  } catch (error) {
-    console.log("error: ", error);
-  }
+  let select = document.getElementById("selectSort").value;
+  let sorted = [...products];
+  if(select === "hightLow") sorted.sort((a,b)=>parseFloat(b.price) - parseFloat(a.price));
+  else if (select === "lowHight") sorted.sort((a,b)=> parseFloat(a.price) - parseFloat(b.price));
+  showInTable(sorted);
+  // try {
+  //   let getAPIProd = await axios.get(BASE_URL)
+  //   switch (select) {
+  //     case "hightLow":
+  //       let productHL = sortMethod(getAPIProd.data,"hightLow")
+  //       showInTable(productHL)
+  //       break;
+  //     case "lowHight":
+  //       let productLH = sortMethod(getAPIProd.data,"lowHight")
+  //       showInTable(productLH)
+  //       break;
+  //     default:
+  //       showInTable(getAPIProd.data)
+  //       break;
+  //   }
+  // } catch (error) {
+  //   console.log("Get api error: ", error);
+  // }
   
 }
-document.getElementById("selectSort").onchange = sortPrice
+document.getElementById("selectSort").onchange = sortPrice;
 
 //filter product
 let fiterProduct = async ()=> {
-  let textInput = document.getElementById("search").value
+  let textInput = document.getElementById("search").value;
   let textSearch = removeVietnameseTones(textInput).toLowerCase();
   try {
-    let getAPIProd = await axios({
-      method: "GET",
-      url: BASE_URL
-    })
+    let getAPIProd = await axios.get(BASE_URL);
     let prodResult = getAPIProd.data.filter((prod , index)=> {
-      return removeVietnameseTones(prod.name).toLowerCase().includes(textSearch)
+      return removeVietnameseTones(prod.name).toLowerCase().includes(textSearch);
     })
-    document.querySelector(".admin .table tbody").innerHTML = renderProduct(prodResult)
+    tbody.innerHTML = renderProduct(prodResult);
   } catch (error) {
-    console.log("error: ", error);
+    console.log("Get api error: ", error);
   }
 }
-document.getElementById("btnSearchPrd").onclick = fiterProduct
+document.getElementById("btnSearchPrd").onclick = fiterProduct;
